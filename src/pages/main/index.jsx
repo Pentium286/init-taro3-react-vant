@@ -20,7 +20,7 @@ const Index = () => {
   usePullDownRefresh(() => { });
 
   const handleClick = () => {
-    Taro.navigateTo({
+    Taro.redirectTo({
       url: "/packageB/pages/redPacketRain/index"
     });
   };

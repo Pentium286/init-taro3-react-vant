@@ -1,4 +1,4 @@
-import { useDidHide, useDidShow, usePullDownRefresh, useReady } from '@tarojs/taro';
+import Taro, { useDidHide, useDidShow, usePullDownRefresh, useReady } from '@tarojs/taro';
 import { useEffect, useState } from 'react';
 import './index.less';
 
@@ -11,7 +11,9 @@ const Index = () => {
   const [max, setMax] = useState(10); // 金币最大是10
 
   // 可以使用所有的 React Hooks
-  useEffect(() => { setVisible(true); });
+  useEffect(() => {
+    setVisible(true);
+  });
 
   // 对应 onReady
   useReady(() => { });
@@ -26,8 +28,11 @@ const Index = () => {
   // 详情可查阅：【Hooks】
   usePullDownRefresh(() => { });
 
-  const handleClick = () => {
-    console.log("handleClick");
+  const success = () => {
+    console.log("success");
+    Taro.redirectTo({
+      url: "/pages/main/index"
+    });
   };
 
   return (
@@ -41,6 +46,7 @@ const Index = () => {
           readyTime={readyTime}
           min={min}
           max={max}
+          onFinish={success}
         />
       </div>
     </>
