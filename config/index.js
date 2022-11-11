@@ -1,5 +1,6 @@
+const path = require('path');
 const config = {
-  projectName: 'myApp',
+  projectName: 'jbs-init-taro3-react',
   date: '2022-11-11',
   designWidth: 750,
   deviceRatio: {
@@ -9,23 +10,27 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: [],
+  plugins: ['@tarojs/plugin-html'],
   defineConstants: {
   },
   copy: {
     patterns: [
+      { from: 'src/components/vant-weapp/', to: 'dist/components/vant-weapp/' },
     ],
     options: {
     }
   },
   framework: 'react',
   compiler: 'webpack4',
+  cache: {
+    enable: true // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
+  },
   mini: {
     postcss: {
       pxtransform: {
         enable: true,
         config: {
-
+          selectorBlackList: [/van-/]
         }
       },
       url: {
@@ -68,12 +73,21 @@ const config = {
         enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
       }
     }
-  }
-}
+  },
+  alias: {
+    '@c': path.resolve(__dirname, '..', 'src/components'),
+    '@u': path.resolve(__dirname, '..', 'src/utils'),
+    '@a': path.resolve(__dirname, '..', 'src/assets'),
+    '~': path.resolve(__dirname, '..', 'src/packageA')
+  },
+};
 
 module.exports = function (merge) {
   if (process.env.NODE_ENV === 'development') {
-    return merge({}, config, require('./dev'))
+    return merge({}, config, require('./dev'));
+  } else if (process.env.NODE_ENV === 'test') {
+    return merge({}, config, require('./test'));
+  } else {
+    return merge({}, config, require('./prod'));
   }
-  return merge({}, config, require('./prod'))
-}
+};

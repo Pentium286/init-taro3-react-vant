@@ -1,15 +1,15 @@
 {
   "miniprogramRoot": "dist/",
-  "projectname": "myApp",
+  "projectname": "jbs-init-taro3-react",
   "description": "",
   "appid": "wx8e1f5ecf9fb5c47a",
   "setting": {
     "urlCheck": true,
-    "es6": false,
-    "enhance": false,
+    "es6": true,
+    "enhance": true,
     "compileHotReLoad": false,
     "postcss": false,
-    "minified": false,
+    "minified": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],

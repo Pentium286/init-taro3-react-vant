@@ -1,0 +1,23 @@
+// https://code.visualstudio.com/docs/languages/jsconfig
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "@c/*": [
+        "src/components/*"
+      ],
+      "@a/*": [
+        "src/assets/*"
+      ],
+      "@u/*": [
+        "src/utils/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
