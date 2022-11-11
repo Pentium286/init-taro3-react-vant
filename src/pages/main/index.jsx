@@ -1,25 +1,36 @@
-import { Component } from 'react';
-import { View, Text } from '@tarojs/components';
+import { useDidHide, useDidShow, usePullDownRefresh, useReady } from '@tarojs/taro';
+import { useEffect } from 'react';
 import './index.less';
 
-export default class Index extends Component {
+const Index = () => {
+  // 可以使用所有的 React Hooks
+  useEffect(() => { });
 
-  componentWillMount() { }
+  // 对应 onReady
+  useReady(() => { });
 
-  componentDidMount() { }
+  // 对应 onShow
+  useDidShow(() => { });
 
-  componentWillUnmount() { }
+  // 对应 onHide
+  useDidHide(() => { });
 
-  componentDidShow() { }
+  // Taro 对所有小程序页面生命周期都实现了对应的自定义 React Hooks 进行支持
+  // 详情可查阅：【Hooks】
+  usePullDownRefresh(() => { });
 
-  componentDidHide() { }
+  const handleClick = () => {
+    console.log("handleClick");
+  };
 
-  render() {
-    return (
+  return (
+    <>
       <div className='index'>
         <h1>Hello world!!!</h1>
-        <van-button type="primary">红包雨</van-button>
+        <van-button type="primary" onClick={handleClick}>红包雨</van-button>
       </div>
-    );
-  }
-}
+    </>
+  );
+};
+
+export default Index;

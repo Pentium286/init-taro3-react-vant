@@ -1,18 +1,22 @@
-import { Component } from 'react'
-import './app.less'
+import { useDidHide, useDidShow } from '@tarojs/taro';
+import { useEffect } from 'react';
+import './app.less';
 
-class App extends Component {
+const App = (props) => {
+  // 可以使用所有的 React Hooks
+  useEffect(() => { });
 
-  componentDidMount () {}
+  // 对应 onShow
+  useDidShow(() => { });
 
-  componentDidShow () {}
+  // 对应 onHide
+  useDidHide(() => { });
 
-  componentDidHide () {}
+  return (
+    <>
+      {props.children}
+    </>
+  );
+};
 
-  render () {
-    // this.props.children 是将要会渲染的页面
-    return this.props.children
-  }
-}
-
-export default App
+export default App;
