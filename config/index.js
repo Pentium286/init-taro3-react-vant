@@ -16,6 +16,7 @@ const config = {
   copy: {
     patterns: [
       { from: 'src/components/vant-weapp/', to: 'dist/components/vant-weapp/' },
+      { from: 'src/components/jbs-weapp/', to: 'dist/components/jbs-weapp/' },
     ],
     options: {
     }
@@ -78,7 +79,8 @@ const config = {
     '@c': path.resolve(__dirname, '..', 'src/components'),
     '@u': path.resolve(__dirname, '..', 'src/utils'),
     '@a': path.resolve(__dirname, '..', 'src/assets'),
-    '~': path.resolve(__dirname, '..', 'src/packageA')
+    '~A': path.resolve(__dirname, '..', 'src/packageA'),
+    '~B': path.resolve(__dirname, '..', 'src/packageB'),
   },
 };
 

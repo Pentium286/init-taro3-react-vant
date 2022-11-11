@@ -50,6 +50,6 @@ export default defineAppConfig({
     "van-goods-action": "@c/vant-weapp/goods-action/index",
     "van-goods-action-icon": "@c/vant-weapp/goods-action-icon/index",
     "van-goods-action-button": "@c/vant-weapp/goods-action-button/index",
-    // "jbs-red-packet-rain": "@c/jbs-weapp/red-packet-rain/index",
+    "jbs-red-packet-rain": "@c/jbs-weapp/red-packet-rain/index",
   },
 });

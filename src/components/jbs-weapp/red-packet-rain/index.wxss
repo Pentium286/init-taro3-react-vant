@@ -283,7 +283,7 @@
   width: 550rpx;
   height: 700rpx;
   background-image: url(https://www.sunniejs.cn/static/weapp/l-rain-gold@2x.png);
-  background-image: url(~images/confirmOrder/vip_dialog_top.png);
+  /* background-image: url(~images/confirmOrder/vip_dialog_top.png); */
   background-size: 100% 100%;
   background-repeat: no-repeat
 }

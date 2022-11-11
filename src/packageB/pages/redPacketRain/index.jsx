@@ -1,10 +1,17 @@
 import { useDidHide, useDidShow, usePullDownRefresh, useReady } from '@tarojs/taro';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './index.less';
 
 const Index = () => {
+  const [visible, setVisible] = useState(false);
+  const [createSpeed, setCreateSpeed] = useState(5); // 速度
+  const [time, setTime] = useState(15); // 游戏时间
+  const [readyTime, setReadyTime] = useState(3); // 准备时间
+  const [min, setMin] = useState(0); // 金币最小是0
+  const [max, setMax] = useState(10); // 金币最大是10
+
   // 可以使用所有的 React Hooks
-  useEffect(() => { });
+  useEffect(() => { setVisible(true); });
 
   // 对应 onReady
   useReady(() => { });
@@ -27,6 +34,14 @@ const Index = () => {
     <>
       <div className='index'>
         <h1>红包雨</h1>
+        <jbs-red-packet-rain
+          visible={visible}
+          createSpeed={createSpeed}
+          time={time}
+          readyTime={readyTime}
+          min={min}
+          max={max}
+        />
       </div>
     </>
   );
