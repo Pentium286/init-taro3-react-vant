@@ -26,7 +26,7 @@ const Index = () => {
   return (
     <>
       <div className='index'>
-        <h1>Hello world!!!</h1>
+        <h1>红包雨</h1>
       </div>
     </>
   );
