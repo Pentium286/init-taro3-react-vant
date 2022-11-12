@@ -1,4 +1,4 @@
-import { useDidHide, useDidShow, usePullDownRefresh, useReady } from '@tarojs/taro';
+import Taro, { useDidHide, useDidShow, usePullDownRefresh, useReady } from '@tarojs/taro';
 import { useEffect } from 'react';
 import './index.less';
 
@@ -19,14 +19,17 @@ const Index = () => {
   // 详情可查阅：【Hooks】
   usePullDownRefresh(() => { });
 
-  const handleClick = () => {
-    console.log("handleClick");
+  const linkToRedPacketRain = () => {
+    Taro.navigateTo({
+      url: "/packageB/pages/redPacketRain/index"
+    });
   };
 
   return (
     <>
       <div className='index'>
         <h1>Hello world!!!</h1>
+        <van-button type="primary" onClick={linkToRedPacketRain}>红包雨</van-button>
       </div>
     </>
   );
