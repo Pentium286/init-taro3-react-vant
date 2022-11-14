@@ -1,6 +1,6 @@
 const path = require('path');
 const config = {
-  projectName: 'jbs-init-taro3-react',
+  projectName: 'jbs-init-taro3-react-vant',
   date: '2022-11-11',
   designWidth: 750,
   deviceRatio: {

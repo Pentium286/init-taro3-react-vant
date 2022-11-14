@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "dist/",
-  "projectname": "jbs-init-taro3-react",
+  "projectname": "jbs-init-taro3-react-vant",
   "description": "",
   "appid": "wx8e1f5ecf9fb5c47a",
   "setting": {
