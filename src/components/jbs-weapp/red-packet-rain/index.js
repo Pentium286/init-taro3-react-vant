@@ -73,22 +73,22 @@ Component({
   methods: {
     // 开始准备倒计时
     cultdown: function () {
-      let _this = this;
+      let self = this;
       let { readyTime } = this.data;
       readyTimer = setInterval(function () {
         if (--readyTime <= 0) {
           clearInterval(readyTimer);
           // 显示红包雨
-          _this.showRain();
+          self.showRain();
         }
-        _this.setData({
+        self.setData({
           readyTime: readyTime
         });
       }, 1000);
     },
     // 展示红包雨界面
     showRain: function () {
-      let _this = this;
+      let self = this;
       // 显示红包雨
       this.setData({
         showStatus: 2
@@ -105,11 +105,11 @@ Component({
           clearInterval(rainTimer);
           if (animation) {
             // 结束
-            _this.showRainResult();
-            _this.cancelCustomAnimationFrame(animation);
+            self.showRainResult();
+            self.cancelCustomAnimationFrame(animation);
           }
         }
-        _this.setData({
+        self.setData({
           showRainTotalTime
         });
       }, 1000);
@@ -163,9 +163,9 @@ Component({
     },
     // 红包下落函数
     customRequestAnimationFrame: function (e) {
-      let _this = this;
+      let self = this;
       let timer = setTimeout(function () {
-        e.call(_this), clearTimeout(timer);
+        e.call(self), clearTimeout(timer);
       }, 1000 / 60);
       return timer;
     },
@@ -230,7 +230,7 @@ Component({
       let touch = e.touches[0];
       let touchX = touch.x;
       let touchY = touch.y;
-      let _this = this;
+      let self = this;
       for (let o = 0; o < redEnvelopes.length; o += 1) {
         let i = redEnvelopes[o],
           rainX = i.x,
@@ -240,11 +240,11 @@ Component({
           gapX = touchX - rainX,
           gapY = touchY - rainY;
         if (gapX >= -20 && gapX <= width + 20 && gapY >= -20 && gapY <= height + 20) {
-          _this.animationOfScore(touchX, touchY);
+          self.animationOfScore(touchX, touchY);
           innerAudioContext.play();
           i.open = true;
-          let score = _this.data.showScore + i.score;
-          _this.setData({
+          let score = self.data.showScore + i.score;
+          self.setData({
             showScore: score,
             showChangeScore: i.score
           });
