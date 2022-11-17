@@ -5,6 +5,18 @@
     "compileHotReLoad": true,
     "urlCheck": false
   },
-  "libVersion": "2.27.1",
-  "condition": {}
+  "libVersion": "2.27.3",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "",
+          "pathName": "packageB/pages/redPacketRain/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  }
 }
