@@ -148,7 +148,7 @@ Component({
     },
     // 关闭
     handleClose: function () {
-      this.triggerEvent("finish");
+      this.triggerEvent("finish", { f: 1 });
     },
     // 显示结果
     showRainResult: function () {

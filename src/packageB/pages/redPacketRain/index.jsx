@@ -5,8 +5,8 @@ import './index.less';
 const Index = () => {
   const [visible, setVisible] = useState(false);
   const [createSpeed, setCreateSpeed] = useState(5); // 速度
-  const [time, setTime] = useState(15); // 游戏时间
-  const [readyTime, setReadyTime] = useState(3); // 准备时间
+  const [time, setTime] = useState(1); // 游戏时间
+  const [readyTime, setReadyTime] = useState(1); // 准备时间
   const [min, setMin] = useState(0); // 金币最小是0
   const [max, setMax] = useState(10); // 金币最大是10
 
@@ -28,8 +28,8 @@ const Index = () => {
   // 详情可查阅：【Hooks】
   usePullDownRefresh(() => { });
 
-  const success = () => {
-    console.log("success");
+  const success = (e) => {
+    console.log("success", e.target.f);
     Taro.redirectTo({
       url: "/pages/main/index"
     });
