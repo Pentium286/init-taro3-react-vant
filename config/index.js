@@ -16,7 +16,6 @@ const config = {
   copy: {
     patterns: [
       { from: 'src/components/vant-weapp/', to: 'dist/components/vant-weapp/' },
-      { from: 'src/components/jbs-weapp/', to: 'dist/components/jbs-weapp/' },
     ],
     options: {
     }
