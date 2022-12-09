@@ -32,6 +32,12 @@ const Index = () => {
     });
   };
 
+  const handleRain = () => {
+    Taro.redirectTo({
+      url: "/packageC/pages/redPacketRain/index",
+    });
+  };
+
   const initValidate = () => {
     setTimeout(() => {
       const rules = {
@@ -89,7 +95,8 @@ const Index = () => {
           <van-button class="btn_box" type="info">信息按钮</van-button>
           <van-button class="btn_box" type="warning">警告按钮</van-button>
           <van-button class="btn_box" type="danger">危险按钮</van-button>
-          <van-button type="primary" onClick={handleClick}>红包雨</van-button>
+          <van-button class="btn_box" type="primary" onClick={handleClick}>红包雨canvas</van-button>
+          <van-button class="btn_box" type="primary" onClick={handleRain}>红包雨dom</van-button>
         </div>
         <van-goods-action>
           <van-goods-action-icon icon="chat-o" text="客服" />

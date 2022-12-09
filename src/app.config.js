@@ -37,6 +37,12 @@ export default defineAppConfig({
         'pages/redPacketRain/index',
       ]
     },
+    {
+      "root": "packageC",
+      "pages": [
+        'pages/redPacketRain/index',
+      ]
+    },
   ],
   window: {
     backgroundTextStyle: 'light',
