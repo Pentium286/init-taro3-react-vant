@@ -1,6 +1,6 @@
 <view wx:if="{{visible}}" class="red-envelope-popup">
   <view class="container flex-center">
-    <view bind:tap="handleClose" catch:touchmove="handleScrollTouch" class="close-bg"></view>
+    <!-- <view bind:tap="handleClose" catch:touchmove="handleScrollTouch" class="close-bg"></view> -->
     <block>
       <block wx:if="{{showStatus===1}}">
         <view class="reminder-wrapper flex-column-center">
