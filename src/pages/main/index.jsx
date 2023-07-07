@@ -1,6 +1,6 @@
 import Taro, { useDidHide, useDidShow, usePullDownRefresh, useReady } from '@tarojs/taro';
 import { useEffect, useState } from 'react';
-import WxValidate from "@u/WxValidate.js";
+import WxValidate from "../../utils/WxValidate";
 import moment from "moment";
 import './index.less';
 
@@ -109,6 +109,11 @@ const Index = () => {
           />
           <van-goods-action-button color="#7232dd" text="立即购买" />
         </van-goods-action>
+        <van-row>
+          <van-col span="8">span: 8</van-col>
+          <van-col span="8">span: 8</van-col>
+          <van-col span="8">span: 8</van-col>
+        </van-row>
       </div>
     </>
   );

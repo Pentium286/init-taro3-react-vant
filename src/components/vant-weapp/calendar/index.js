@@ -103,6 +103,10 @@ VantComponent({
             type: null,
             value: null,
         },
+        minRange: {
+            type: Number,
+            value: 1,
+        },
         firstDayOfWeek: {
             type: Number,
             value: 0,
@@ -159,15 +163,17 @@ VantComponent({
             return date;
         },
         getInitialDate(defaultDate = null) {
-            const { type, minDate, maxDate } = this.data;
+            const { type, minDate, maxDate, allowSameDay } = this.data;
             const now = getToday().getTime();
             if (type === 'range') {
                 if (!Array.isArray(defaultDate)) {
                     defaultDate = [];
                 }
                 const [startDay, endDay] = defaultDate || [];
-                const start = this.limitDateRange(startDay || now, minDate, getPrevDay(new Date(maxDate)).getTime());
-                const end = this.limitDateRange(endDay || now, getNextDay(new Date(minDate)).getTime());
+                const startDate = getTime(startDay || now);
+                const start = this.limitDateRange(startDate, minDate, allowSameDay ? startDate : getPrevDay(new Date(maxDate)).getTime());
+                const date = getTime(endDay || now);
+                const end = this.limitDateRange(date, allowSameDay ? date : getNextDay(new Date(minDate)).getTime());
                 return [start, end];
             }
             if (type === 'multiple') {
@@ -240,7 +246,7 @@ VantComponent({
                         this.select([date, null]);
                     }
                     else if (allowSameDay) {
-                        this.select([date, date]);
+                        this.select([date, date], true);
                     }
                 }
                 else {

@@ -56,6 +56,8 @@ export default defineAppConfig({
     "van-goods-action": "@c/vant-weapp/goods-action/index",
     "van-goods-action-icon": "@c/vant-weapp/goods-action-icon/index",
     "van-goods-action-button": "@c/vant-weapp/goods-action-button/index",
+    "van-row": "@c/vant-weapp/row/index",
+    "van-col": "@c/vant-weapp/col/index",
   },
   lazyCodeLoading: "requiredComponents",
 });

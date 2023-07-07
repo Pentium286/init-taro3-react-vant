@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "dist/",
-  "projectname": "jbs-init-taro3-react-vant",
+  "projectname": "myApp",
   "description": "",
   "appid": "wx8e1f5ecf9fb5c47a",
   "setting": {
@@ -8,16 +8,17 @@
     "es6": true,
     "enhance": true,
     "compileHotReLoad": false,
-    "postcss": false,
+    "postcss": true,
     "minified": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    }
+    },
+    "condition": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.27.2",
+  "libVersion": "2.33.0",
   "srcMiniprogramRoot": "dist/",
   "packOptions": {
     "ignore": [],

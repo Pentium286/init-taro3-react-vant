@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "jbs-init-taro3-react-vant",
+  "projectname": "myApp",
   "appid": "testAppId",
   "setting": {
     "es6": false,
