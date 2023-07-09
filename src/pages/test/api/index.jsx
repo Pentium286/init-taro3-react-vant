@@ -1,13 +1,18 @@
 import { useDidHide, useDidShow, usePullDownRefresh, useReady } from '@tarojs/taro';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import api from './service';
 import './index.less';
 
 const Index = () => {
   // 可以使用所有的 React Hooks
+  const [link, setLink] = useState("");
+
   useEffect(() => { });
 
   // 对应 onReady
-  useReady(() => { });
+  useReady(() => {
+    handleCreateGzhAuthLink();
+  });
 
   // 对应 onShow
   useDidShow(() => { });
@@ -19,6 +24,11 @@ const Index = () => {
   // 详情可查阅：【Hooks】
   usePullDownRefresh(() => { });
 
+  const handleCreateGzhAuthLink = async () => {
+    let res = await api.createGzhAuthLink();
+    setLink(res);
+  };
+
   const handleClick = () => {
     console.log("handleClick");
   };
@@ -27,6 +37,7 @@ const Index = () => {
     <>
       <div className='index'>
         <h1>Hello world!!!</h1>
+        <h2>{link}</h2>
       </div>
     </>
   );

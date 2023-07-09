@@ -1,5 +1,6 @@
-import { useLaunch, useDidHide, useDidShow } from '@tarojs/taro';
+import Taro, { useLaunch, useDidHide, useDidShow } from '@tarojs/taro';
 import { useEffect } from 'react';
+import { updateVersion } from './api/common.js';
 import './app.less';
 
 function App({ children }) {
@@ -8,7 +9,11 @@ function App({ children }) {
   useEffect(() => { });
 
   // 对应 onShow
-  useDidShow(() => { });
+  useDidShow(() => {
+    if (Taro.getEnv() == 'WEAPP') {
+      updateVersion();
+    }
+  });
 
   // 对应 onHide
   useDidHide(() => { });
