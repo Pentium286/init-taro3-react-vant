@@ -8,6 +8,8 @@ const Index = () => {
   const [msg, setMsg] = useState(moment(new Date()).format("YYYY-MM-DD"));
   const [wxValidate, setWxValidate] = useState('');
 
+  const [active, setActive] = useState(1);
+
   // 可以使用所有的 React Hooks
   useEffect(() => {
     initValidate();
@@ -83,12 +85,19 @@ const Index = () => {
     });
   };
 
+  const onChange = (event) => {
+    Taro.showToast({
+      title: `切换到标签${event.detail.name}`,
+      icon: 'none',
+    });
+  };
+
   return (
     <>
       <div class="main">
-        <text>{msg}</text>
-        <van-button type="primary" onClick={linkToIcon}>icon的使用</van-button>
-        <van-button type="primary" onClick={linkToApi}>接口使用说明</van-button>
+        <div className="demo_block">{msg}</div>
+        <div className="demo_block"><van-button type="primary" onClick={linkToIcon}>icon的使用</van-button></div>
+        <div className="demo_block"><van-button type="primary" onClick={linkToApi}>接口使用说明</van-button></div>
         <div class="btn_list">
           <van-button class="btn_box" type="default">默认按钮</van-button>
           <van-button class="btn_box" type="primary">主要按钮</van-button>
@@ -114,6 +123,12 @@ const Index = () => {
           <van-col span="8">span: 8</van-col>
           <van-col span="8">span: 8</van-col>
         </van-row>
+        <van-tabs active={active} onChange={onChange}>
+          <van-tab title="标签 1">内容 1</van-tab>
+          <van-tab title="标签 2">内容 2</van-tab>
+          <van-tab title="标签 3">内容 3</van-tab>
+          <van-tab title="标签 4">内容 4</van-tab>
+        </van-tabs>
       </div>
     </>
   );

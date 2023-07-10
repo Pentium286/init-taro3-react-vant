@@ -26,7 +26,10 @@ const Index = () => {
   return (
     <>
       <div className='index'>
-        <h1>Hello world!!!</h1>
+        <van-icon name="close" />
+        <van-icon name="chat" dot />
+        <van-icon name="chat" info="9" />
+        <van-icon name="chat" info="99+" />
       </div>
     </>
   );
