@@ -1,18 +1,13 @@
 import { useDidHide, useDidShow, usePullDownRefresh, useReady } from '@tarojs/taro';
-import { useEffect, useState } from 'react';
-import api from './service';
+import { useEffect } from 'react';
 import './index.less';
 
 const Index = () => {
   // 可以使用所有的 React Hooks
-  const [link, setLink] = useState("");
-
   useEffect(() => { });
 
   // 对应 onReady
-  useReady(() => {
-    handleCreateGzhAuthLink();
-  });
+  useReady(() => { });
 
   // 对应 onShow
   useDidShow(() => { });
@@ -24,20 +19,14 @@ const Index = () => {
   // 详情可查阅：【Hooks】
   usePullDownRefresh(() => { });
 
-  const handleCreateGzhAuthLink = async () => {
-    let res = await api.createGzhAuthLink();
-    setLink(res);
-  };
-
   const handleClick = () => {
     console.log("handleClick");
   };
 
   return (
     <>
-      <div className='index'>
-        <h1>调用接口</h1>
-        <h2>{link}</h2>
+      <div className='user'>
+        <h1>用户</h1>
       </div>
     </>
   );

@@ -8,14 +8,14 @@
     "es6": true,
     "enhance": true,
     "compileHotReLoad": false,
-    "postcss": true,
+    "postcss": false,
     "minified": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
-    "condition": true
+    "condition": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.33.0",
