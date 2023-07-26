@@ -37,13 +37,10 @@ const list = [
 ];
 
 const CustomTabbar = () => {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState("/pages/main/index");
 
   const onChange = (event) => {
-    console.log(event);
-    // Taro.switchTab({
-    //   url: event.detail,
-    // });
+    setActive(event.detail);
   };
 
   return (
