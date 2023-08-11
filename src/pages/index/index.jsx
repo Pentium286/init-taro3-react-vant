@@ -1,8 +1,10 @@
-import { useDidHide, useDidShow, usePullDownRefresh, useReady } from '@tarojs/taro';
-import { useEffect } from 'react';
+import Taro, { useDidHide, useDidShow, usePullDownRefresh, useReady } from '@tarojs/taro';
+import { useEffect, useMemo } from 'react';
 import './index.less';
 
 const Index = () => {
+  const page = useMemo(() => Taro.getCurrentInstance().page, []);
+
   // 可以使用所有的 React Hooks
   useEffect(() => { });
 
@@ -10,7 +12,12 @@ const Index = () => {
   useReady(() => { });
 
   // 对应 onShow
-  useDidShow(() => { });
+  useDidShow(() => {
+    const tabbar = Taro.getTabBar(page);
+    tabbar?.setState({
+      active: 2,
+    });
+  });
 
   // 对应 onHide
   useDidHide(() => { });

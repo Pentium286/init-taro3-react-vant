@@ -20,14 +20,14 @@ export default defineAppConfig({
       {
         pagePath: 'pages/main/index',
         text: '首页',
-        iconPath: 'assets/images/tabs/index@2x.png',
-        selectedIconPath: 'assets/images/tabs/indexActive@2x.png'
+        iconPath: 'assets/images/tabs/tabbar_home.png',
+        selectedIconPath: 'assets/images/tabs/tabbar_home_on.png',
       },
       {
         pagePath: 'pages/home/index',
         text: '主页',
-        iconPath: 'assets/images/tabs/index@3x.png',
-        selectedIconPath: 'assets/images/tabs/indexActive@3x.png',
+        iconPath: 'assets/images/tabs/tabbar_cate.png',
+        selectedIconPath: 'assets/images/tabs/tabbar_cate_on.png',
       },
       {
         pagePath: 'pages/index/index',
@@ -38,14 +38,14 @@ export default defineAppConfig({
       {
         pagePath: 'pages/user/index',
         text: '用户',
-        iconPath: 'assets/images/tabs/user@3x.png',
-        selectedIconPath: 'assets/images/tabs/userActive@3x.png'
+        iconPath: 'assets/images/tabs/tabbar_cart.png',
+        selectedIconPath: 'assets/images/tabs/tabbar_cart_on.png'
       },
       {
         pagePath: 'pages/mine/index',
         text: '我的',
-        iconPath: 'assets/images/tabs/user@2x.png',
-        selectedIconPath: 'assets/images/tabs/userActive@2x.png'
+        iconPath: 'assets/images/tabs/tabbar_my.png',
+        selectedIconPath: 'assets/images/tabs/tabbar_my_on.png',
       },
     ]
   },
