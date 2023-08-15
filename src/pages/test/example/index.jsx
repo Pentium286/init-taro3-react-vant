@@ -10,6 +10,10 @@ const Index = () => {
 
   const [active, setActive] = useState(1);
 
+  const [currentDate, setCurrentDate] = useState(new Date().getTime());
+  const minDate = new Date(2015, 10, 1).getTime();
+  const maxDate = new Date(2019, 10, 1).getTime();
+
   // 可以使用所有的 React Hooks
   useEffect(() => {
     initValidate();
@@ -78,6 +82,10 @@ const Index = () => {
     });
   };
 
+  const onInput = (event) => {
+    console.log(event.detail);
+  };
+
   return (
     <>
       <div class="example">
@@ -106,6 +114,15 @@ const Index = () => {
           <van-tab title="标签 3">内容 3</van-tab>
           <van-tab title="标签 4">内容 4</van-tab>
         </van-tabs>
+        <div className='demo_block'>
+          <van-datetime-picker
+            type="date"
+            value={currentDate}
+            minDate={minDate}
+            maxDate={maxDate}
+            onInput={onInput}
+          />
+        </div>
       </div>
     </>
   );

@@ -81,6 +81,7 @@ const config = {
     '@a': path.resolve(__dirname, '..', 'src/assets'),
     '~A': path.resolve(__dirname, '..', 'src/packageA'),
     '~B': path.resolve(__dirname, '..', 'src/packageB'),
+    '@vant': path.resolve(__dirname, '..', 'src/components/vant-weapp'),
   },
 };
 
