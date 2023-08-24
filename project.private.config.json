@@ -11,7 +11,7 @@
       "list": [
         {
           "name": "",
-          "pathName": "pages/camera/index",
+          "pathName": "pages/bluetooth/index",
           "query": "",
           "launchMode": "default",
           "scene": null
