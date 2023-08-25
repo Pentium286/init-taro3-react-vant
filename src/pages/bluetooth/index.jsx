@@ -223,7 +223,7 @@ const Index = () => {
         for (let i = 0; i < res.services.length; i++) {
           // 该服务是否为主服务
           if (res.services[i].isPrimary) {
-            setTextLog(textLog + "该服务是为主服务：" + res.services[i].uuid + " \n");
+            setTextLog(textLog + "该服务是为主服务UUID：" + res.services[i].uuid + " \n");
             Taro.navigateTo({
               url: "/pages/bluetoothPage/index?name=" + encodeURIComponent(name) + '&deviceId=' + encodeURIComponent(devId) + '&serviceId=' + encodeURIComponent(res.services[i].uuid),
             });
@@ -239,7 +239,7 @@ const Index = () => {
         <div className='log'>
           <div>展示log日志(可滑动查看)：</div>
           <ScrollView scrollY className='scrollList'>
-            <div dangerouslySetInnerHTML={{ __html: textLog }}></div>
+            <text>{textLog}</text>
           </ScrollView>
         </div>
         <div className='scanView'>
@@ -253,7 +253,7 @@ const Index = () => {
               <div key={index} onClick={() => handleCreateBLEConnection(item)} className='deviceItem'>
                 <div className='a'>{item.name}</div>
                 <div>信号强度: {item.RSSI}dBm ({handleMax(0, item.RSSI + 100)}%)</div>
-                <div className='c'>UUID: {item.deviceId}</div>
+                <div className='c'>DeviceId: {item.deviceId}</div>
                 {/* 当前蓝牙设备的广播数据段中的 ServiceUUIDs 数据段 */}
                 <div>Service数量: {handleLen(item.advertisServiceUUIDs)}</div>
               </div>
