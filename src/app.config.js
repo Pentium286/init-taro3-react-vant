@@ -8,6 +8,7 @@ export default defineAppConfig({
     'pages/cart/index',
     'pages/camera/index',
     'pages/bluetooth/index',
+    'pages/bluetoothPage/index',
     'pages/test/icon/index',
     'pages/test/api/index',
     'pages/test/example/index',

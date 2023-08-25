@@ -1,1 +1,57 @@
-.bluetooth {}
+.bluetooth {
+  .log {
+    width: 90%;
+    left: 5%;
+    position: relative;
+    margin-top: 10rpx;
+  }
+
+  .scrollList {
+    max-height: 300rpx;
+  }
+
+  .scanView {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 10rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+  }
+
+  .scanView button {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 14px;
+    padding-right: 14px;
+    box-sizing: border-box;
+    font-size: 18px;
+    width: 48%;
+  }
+
+  .devicesSummary {
+    margin-top: 30px;
+    padding: 10px 5%;
+    font-size: 16px;
+  }
+
+  .deviceList {
+    height: 400rpx;
+    margin: 50px 5%;
+    margin-top: 0;
+    border: 1px solid #EEE;
+    border-radius: 5px;
+    width: auto;
+  }
+
+  .deviceItem {
+    border-bottom: 1px solid #EEE;
+    color: #666;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .1);
+    }
+  }
+}
