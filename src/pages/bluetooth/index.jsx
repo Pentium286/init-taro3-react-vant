@@ -137,7 +137,7 @@ const Index = () => {
     }, 3000);
     Taro.startBluetoothDevicesDiscovery({
       services: [],
-      allowDuplicatesKey: true, // 是否允许重复上报同一设备, 如果允许重复上报，则onDeviceFound 方法会多次上报同一设备，但是 RSSI(信号) 值会有不同
+      allowDuplicatesKey: true, // 是否允许重复上报同一设备, 如果允许重复上报，则 onDeviceFound 方法会多次上报同一设备，但是 RSSI(信号) 值会有不同
       success: (res) => {
         setTextLog(textLog + "扫描附近的蓝牙外围设备成功，准备监听寻找新设备：" + res + " \n");
         handleOnBluetoothDeviceFound(); // 监听寻找到新设备的事件
@@ -153,23 +153,23 @@ const Index = () => {
 
   // 监听寻找到新设备的事件
   const handleOnBluetoothDeviceFound = () => {
+    let arr = [];
     Taro.onBluetoothDeviceFound((res) => {
       res.devices.forEach((item) => {
         if (!item.name && !item.localName) {
           return;
         }
-        const foundDevices = devices;
-        const idx = inArray(foundDevices, 'deviceId', item.deviceId);
+        const idx = inArray(devices, 'deviceId', item.deviceId);
         let data = {};
         if (idx === -1) {
-          data[`devices[${foundDevices.length}]`] = item;
-          setDevices([data[`devices[${foundDevices.length}]`]]);
-          console.log("data[`devices[${foundDevices.length}]`]: ", data[`devices[${foundDevices.length}]`]);
+          //这里可以写连接此设备的蓝牙设备的条件
+          // data[`devices[${foundDevices.length}]`] = item;
         } else {
-          data[`devices[${idx}]`] = item;
-          setDevices([data[`devices[${idx}]`]]);
+          // data[`devices[${idx}]`] = item;
         }
+        arr.push(item);
       });
+      setDevices([...devices, ...arr]);
     });
   };
 
