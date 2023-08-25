@@ -62,7 +62,6 @@ const Index = () => {
   // 4、搜索完成以后获取所有已经发现的蓝牙设备，就可以将 devices 中的设备 Array 取出来
   // 5、然后就可以得到所有已经连接的设备了
   const handleStartScan = () => {
-    console.log("handleStartScan");
     Taro._discoveryStarted = false;
     if (isopen) {
       handleGetBluetoothAdapterState();
@@ -73,7 +72,6 @@ const Index = () => {
 
   // 初始化小程序蓝牙模块
   const handleOpenBluetoothAdapter = () => {
-    console.log("handleOpenBluetoothAdapter");
     Taro.openBluetoothAdapter({
       mode: 'central',
       success: (res) => {
@@ -90,7 +88,6 @@ const Index = () => {
     });
     // 监听蓝牙适配器状态变化事件
     Taro.onBluetoothAdapterStateChange((res) => {
-      console.log("onBluetoothAdapterStateChange: ", res);
       let isDvailable = res.available; // 蓝牙适配器是否可用
       if (isDvailable) {
         handleGetBluetoothAdapterState();
@@ -104,20 +101,16 @@ const Index = () => {
 
   // 关闭蓝牙模块，使其进入未初始化状态
   const handleCloseBluetoothAdapter = () => {
-    console.log("handleCloseBluetoothAdapter");
     Taro.closeBluetoothAdapter();
     Taro._discoveryStarted = false;
   };
 
   // 获取本机蓝牙适配器状态
   const handleGetBluetoothAdapterState = () => {
-    console.log("handleGetBluetoothAdapterState");
     Taro.getBluetoothAdapterState({
       success: (res) => {
         let isDiscov = res.discovering; // 是否正在搜索设备
         let isDvailable = res.available; // 蓝牙适配器是否可用
-        console.log("isDvailable: ", isDvailable);
-        console.log("isDiscov: ", isDiscov);
         if (isDvailable) {
           setTextLog(textLog + "本机蓝牙适配器状态：可用 \n");
           if (!isDiscov) {
@@ -133,7 +126,6 @@ const Index = () => {
   // 开始扫描附近的蓝牙外围设备
   // 注意，该操作比较耗费系统资源，请在搜索并连接到设备后调用 stop 方法停止搜索
   const handleStartBluetoothDevicesDiscovery = () => {
-    console.log("handleStartBluetoothDevicesDiscovery");
     if (Taro._discoveryStarted) {
       return;
     }
@@ -155,14 +147,12 @@ const Index = () => {
 
   // 停止搜寻附近的蓝牙外围设备。若已经找到需要的蓝牙设备并不需要继续搜索时，建议调用该接口停止蓝牙搜索
   const handleStopBluetoothDevicesDiscovery = () => {
-    console.log("handleStopBluetoothDevicesDiscovery");
     setTextLog(textLog + "停止搜索附近的蓝牙外围设备 \n");
     Taro.stopBluetoothDevicesDiscovery();
   };
 
   // 监听寻找到新设备的事件
   const handleOnBluetoothDeviceFound = () => {
-    console.log("handleOnBluetoothDeviceFound");
     Taro.onBluetoothDeviceFound((res) => {
       res.devices.forEach((item) => {
         if (!item.name && !item.localName) {
@@ -185,7 +175,6 @@ const Index = () => {
 
   // 连接低功耗蓝牙设备
   const handleCreateBLEConnection = (e) => {
-    console.log("handleCreateBLEConnection");
     const ds = e.currentTarget.dataset;
     const devId = ds.deviceId; // 设备 UUID
     const name = ds.name; // 设备名称
@@ -219,7 +208,6 @@ const Index = () => {
 
   // 断开与低功耗蓝牙设备的连接
   const handleCloseBLEConnection = () => {
-    console.log("handleCloseBLEConnection");
     Taro.closeBLEConnection({
       deviceId: devId,
     });
@@ -230,7 +218,6 @@ const Index = () => {
 
   // 获取蓝牙设备所有 service (服务)
   const handleGetBLEDeviceServices = (devId) => {
-    console.log("handleGetBLEDeviceServices");
     Taro.getBLEDeviceServices({
       deviceId: devId,
       success: (res) => {
