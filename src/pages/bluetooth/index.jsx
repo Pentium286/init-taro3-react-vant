@@ -9,7 +9,6 @@ const Index = () => {
   const [devices, setDevices] = useState([]);
   const [connected, setConnected] = useState(connected);
   const [chs, setChs] = useState([]);
-  const [name, setName] = useState("");
   const [devId, setDevId] = useState("");
   const [canWrite, setCanWrite] = useState(false);
 
@@ -185,9 +184,8 @@ const Index = () => {
         Taro.hideLoading(); // 隐藏 loading
         setTextLog(textLog + "配对成功，获取服务... \n");
         setConnected(true);
-        setName(name);
         setDevId(devId);
-        handleGetBLEDeviceServices(devId);
+        handleGetBLEDeviceServices(name, devId);
       },
       fail: (res) => {
         Taro.hideLoading(); // 隐藏 loading
@@ -216,7 +214,7 @@ const Index = () => {
   };
 
   // 获取蓝牙设备所有 service (服务)
-  const handleGetBLEDeviceServices = (devId) => {
+  const handleGetBLEDeviceServices = (name, devId) => {
     Taro.getBLEDeviceServices({
       deviceId: devId,
       success: (res) => {
