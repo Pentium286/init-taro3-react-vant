@@ -18,9 +18,7 @@ function App({ children }) {
   // 对应 onHide
   useDidHide(() => { });
 
-  useLaunch(() => {
-    console.log('App launched.');
-  });
+  useLaunch(() => { });
 
   // children 是将要会渲染的页面
   return children;
