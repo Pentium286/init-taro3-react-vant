@@ -23,7 +23,7 @@ const Index = () => {
   return (
     <>
       <div className='bluetoothPage'>
-
+        
       </div>
     </>
   );

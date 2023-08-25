@@ -163,21 +163,20 @@ const Index = () => {
         let data = {};
         if (idx === -1) {
           //这里可以写连接此设备的蓝牙设备的条件
+          arr.push(item);
           // data[`devices[${foundDevices.length}]`] = item;
         } else {
           // data[`devices[${idx}]`] = item;
         }
-        arr.push(item);
       });
       setDevices([...devices, ...arr]);
     });
   };
 
   // 连接低功耗蓝牙设备
-  const handleCreateBLEConnection = (e) => {
-    const ds = e.currentTarget.dataset;
-    const devId = ds.deviceId; // 设备 UUID
-    const name = ds.name; // 设备名称
+  const handleCreateBLEConnection = (item) => {
+    const devId = item.deviceId; // 设备 UUID
+    const name = item.name; // 设备名称
     setTextLog(textLog + "正在连接，请稍后... \n");
     Taro.showLoading("连接中...");
     Taro.createBLEConnection({
@@ -224,10 +223,9 @@ const Index = () => {
         for (let i = 0; i < res.services.length; i++) {
           // 该服务是否为主服务
           if (res.services[i].isPrimary) {
-            let s = res.services[i].uuid;
             setTextLog(textLog + "该服务是为主服务：" + res.services[i].uuid + " \n");
             Taro.navigateTo({
-              url: "pages/bluetoothPage/index" + encodeURIComponent(name) + '&deviceId=' + encodeURIComponent(devId) + '&serviceId=' + encodeURIComponent(res.services[i].uuid),
+              url: "/pages/bluetoothPage/index?name=" + encodeURIComponent(name) + '&deviceId=' + encodeURIComponent(devId) + '&serviceId=' + encodeURIComponent(res.services[i].uuid),
             });
           }
         }
@@ -241,7 +239,7 @@ const Index = () => {
         <div className='log'>
           <div>展示log日志(可滑动查看)：</div>
           <ScrollView scrollY className='scrollList'>
-            <span>{textLog}</span>
+            <div dangerouslySetInnerHTML={{ __html: textLog }}></div>
           </ScrollView>
         </div>
         <div className='scanView'>
@@ -252,10 +250,10 @@ const Index = () => {
         <ScrollView className='deviceList' scrollY scrollWithAnimation>
           {
             devices.map((item, index) => (
-              <div device-id={item.deviceId} name={item.name || item.localName} onClick={handleCreateBLEConnection} className='deviceItem'>
-                <div>{item.name}</div>
+              <div key={index} onClick={() => handleCreateBLEConnection(item)} className='deviceItem'>
+                <div className='a'>{item.name}</div>
                 <div>信号强度: {item.RSSI}dBm ({handleMax(0, item.RSSI + 100)}%)</div>
-                <div style="fontSize:12px">UUID: {item.deviceId}</div>
+                <div className='c'>UUID: {item.deviceId}</div>
                 {/* 当前蓝牙设备的广播数据段中的 ServiceUUIDs 数据段 */}
                 <div>Service数量: {handleLen(item.advertisServiceUUIDs)}</div>
               </div>
