@@ -21,12 +21,10 @@ const Index = () => {
   // 对应 onShow
   useDidShow(() => { });
 
-  useUnload(() => {
+  // 对应 onHide
+  useDidHide(() => {
     handleCloseBluetoothAdapter(); //关闭蓝牙模块，使其进入未初始化状态。
   });
-
-  // 对应 onHide
-  useDidHide(() => { });
 
   // Taro 对所有小程序页面生命周期都实现了对应的自定义 React Hooks 进行支持
   // 详情可查阅：【Hooks】
@@ -251,7 +249,7 @@ const Index = () => {
               <div key={index} onClick={() => handleCreateBLEConnection(item)} className='deviceItem'>
                 <div className='a'>{item.name}</div>
                 <div>信号强度: {item.RSSI}dBm ({handleMax(0, item.RSSI + 100)}%)</div>
-                <div className='c'>DeviceId: {item.deviceId}</div>
+                <div className='c'>deviceId: {item.deviceId}</div>
                 {/* 当前蓝牙设备的广播数据段中的 ServiceUUIDs 数据段 */}
                 <div>Service数量: {handleLen(item.advertisServiceUUIDs)}</div>
               </div>

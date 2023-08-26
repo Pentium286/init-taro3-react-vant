@@ -41,7 +41,7 @@ export const hexToString = (str) => {
   return resultStr.join("");
 };
 
-// 微信app版本比较
+// 微信 app 版本比较
 export const versionCompare = (ver1, ver2) => {
   var version1pre = parseFloat(ver1);
   var version2pre = parseFloat(ver2);
