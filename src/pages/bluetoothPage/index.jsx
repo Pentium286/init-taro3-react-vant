@@ -12,7 +12,8 @@ const Index = () => {
     const devid = decodeURIComponent(options.deviceId);
     const devname = decodeURIComponent(options.name);
     const devserviceid = decodeURIComponent(options.serviceId);
-    const log = textLog + "设备名=" + devname + "\n设备UUID=" + devid + "\n服务UUID=" + devserviceid + "\n";
+    const log = textLog + "设备名=" + devname + "\n设备ID=" + devid + "\n服务ID=" + devserviceid + "\n";
+
     setTextLog(log);
     setDeviceId(devid);
     setName(devname);
