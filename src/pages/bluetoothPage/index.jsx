@@ -15,7 +15,6 @@ const Index = () => {
   const [connected, setConnected] = useState(true);
   const [canWrite, setCanWrite] = useState(false);
   const [orderInputStr, setOrderInputStr] = useState("");
-  const [accountInputStr, setAccountInputStr] = useState("");
 
   useLoad((options) => {
     const devid = decodeURIComponent(options.deviceId);
@@ -169,21 +168,20 @@ const Index = () => {
   // 注意：必须设备的特征值支持write才可以成功调用，具体参照 characteristic 的 properties 属性
   const writeBLECharacteristicValue = (order) => {
     let byteLength = order.byteLength;
-    let log = that.data.textLog + "当前执行指令的字节长度:" + byteLength + "\n";
+    let log = textLog + "当前执行指令的字节长度:" + byteLength + "\n";
     setTextLog(log);
     Taro.writeBLECharacteristicValue({
       deviceId: deviceId,
       serviceId: serviceId,
       characteristicId: writeCharacteristicId,
       // 这里的 value 是 ArrayBuffer 类型
-      // value: order.slice(0, 20),
-      value: order,
+      value: order.slice(0, 20),
       success: (res) => {
-        // if (byteLength > 20) {
-        //   setTimeout(function () {
-        //     writeBLECharacteristicValue(order.slice(20, byteLength));
-        //   }, 150);
-        // }
+        if (byteLength > 20) {
+          setTimeout(function () {
+            // writeBLECharacteristicValue(order.slice(20, byteLength));
+          }, 150);
+        }
         let log = textLog + "写入成功：" + res.errMsg + "\n";
         setTextLog(log);
       },
@@ -212,7 +210,7 @@ const Index = () => {
         {/* 底部按钮 */}
         <div className='functionButtonDiv'>
           <div className='functionInput'>
-            <input className="input" type="text" cursor-spacing="20" onInput={orderInput} placeholder="请输入指令" value={accountInputStr} />
+            <input className="input" type="text" cursor-spacing="20" onChange={orderInput} placeholder="请输入指令" value={orderInputStr} />
             <van-button type="info" onClick={sentOrder}>发送</van-button>
           </div>
           <div className='functionButtonDiv2'>
