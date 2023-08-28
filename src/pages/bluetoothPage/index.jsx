@@ -29,7 +29,7 @@ const Index = () => {
     setServiceId(devserviceid);
 
     // 获取特征值
-    handleGetBLEDeviceCharacteristics();
+    getBLEDeviceCharacteristics();
   });
 
   // 可以使用所有的 React Hooks
@@ -60,13 +60,8 @@ const Index = () => {
   // 清空 log 日志
   const startClear = () => { };
 
-  // 点击设置最大 MTU
-  const setMTUClick = () => {
-    setMaxMTU();
-  };
-
   // 返回蓝牙是否正处于链接状态
-  const handleOnBLEConnectionStateChange = (onFailCallback) => {
+  const onBLEConnectionStateChange = (onFailCallback) => {
     Taro.onBLEConnectionStateChange((res) => {
       // 该方法回调中可以用于处理连接意外断开等异常情况
       console.log(`device ${res.deviceId} state has changed, connected: ${res.connected}`);
@@ -75,7 +70,7 @@ const Index = () => {
   };
 
   // 断开与低功耗蓝牙设备的连接
-  const handleCloseBLEConnection = () => {
+  const closeBLEConnection = () => {
     Taro.closeBLEConnection({
       deviceId: deviceId,
     });
@@ -90,7 +85,7 @@ const Index = () => {
   };
 
   // 获取蓝牙设备某个服务中的所有 characteristic（特征值）
-  const handleGetBLEDeviceCharacteristics = () => {
+  const getBLEDeviceCharacteristics = () => {
     Taro.getBLEDeviceCharacteristics({
       deviceId: deviceId,
       serviceId: serviceId,
@@ -115,18 +110,18 @@ const Index = () => {
             var log = textLog + "该特征值支持 notify 操作:" + item.uuid + "\n";
             setTextLog(log);
             setNotifyCharacteristicId(item.uuid);
-            handleNotifyBLECharacteristicValueChange();
+            notifyBLECharacteristicValueChange();
           }
         }
       },
     });
     // 监听特征值变化
-    // handleOnBLECharacteristicValueChange();
+    // onBLECharacteristicValueChange();
   };
 
   // 启用低功耗蓝牙设备特征值变化时的 notify 功能，订阅特征值
   // 注意：必须设备的特征值支持 notify 或者 indicate 才可以成功调用，具体参照 characteristic 的 properties 属性
-  const handleNotifyBLECharacteristicValueChange = () => {
+  const notifyBLECharacteristicValueChange = () => {
     Taro.notifyBLECharacteristicValueChange({
       state: true, // 启用 notify 功能
       deviceId: deviceId,
@@ -135,7 +130,7 @@ const Index = () => {
       success: (res) => {
         let log = textLog + "notify启动成功" + res.errMsg + "\n";
         setTextLog(log);
-        handleOnBLECharacteristicValueChange(); // 监听特征值变化
+        onBLECharacteristicValueChange(); // 监听特征值变化
       },
       fail: (res) => {
         Taro.showToast({
@@ -150,7 +145,7 @@ const Index = () => {
   };
 
   // 监听低功耗蓝牙设备的特征值变化。必须先启用 notify 接口才能接收到设备推送的 notification
-  const handleOnBLECharacteristicValueChange = () => {
+  const onBLECharacteristicValueChange = () => {
     Taro.onBLECharacteristicValueChange((res) => {
       let resValue = ab2hext(res.value); // 16进制字符串
       let resValueStr = hexToString(resValue);
@@ -167,12 +162,12 @@ const Index = () => {
   const sentOrder = () => {
     let orderStr = orderInputStr; // 指令
     let order = stringToBytes(orderStr);
-    handleWriteBLECharacteristicValue(order);
+    writeBLECharacteristicValue(order);
   };
 
   // 向低功耗蓝牙设备特征值中写入二进制数据。
   // 注意：必须设备的特征值支持write才可以成功调用，具体参照 characteristic 的 properties 属性
-  const handleWriteBLECharacteristicValue = (order) => {
+  const writeBLECharacteristicValue = (order) => {
     let byteLength = order.byteLength;
     let log = that.data.textLog + "当前执行指令的字节长度:" + byteLength + "\n";
     setTextLog(log);
@@ -186,7 +181,7 @@ const Index = () => {
       success: (res) => {
         // if (byteLength > 20) {
         //   setTimeout(function () {
-        //     handleWriteBLECharacteristicValue(order.slice(20, byteLength));
+        //     writeBLECharacteristicValue(order.slice(20, byteLength));
         //   }, 150);
         // }
         let log = textLog + "写入成功：" + res.errMsg + "\n";
@@ -194,25 +189,6 @@ const Index = () => {
       },
       fail: (res) => {
         let log = textLog + "写入失败" + res.errMsg + "\n";
-        setTextLog(log);
-      },
-    });
-  };
-
-  // 设置最大 MTU
-  // 设置蓝牙最大传输单元。需在 wx.createBLEConnection 调用成功后调用，mtu 设置范围 (22,512)。安卓5.1以上有效
-  const setMaxMTU = () => {
-    Taro.setBLEMTU({
-      deviceId: deviceId,
-      mtu: 512,
-      success: (res) => {
-        console.log("setBLEMTU success>>", res);
-        var log = textLog + "设置最大MTU成功：res=" + JSON.stringify(res) + "\n";
-        setTextLog(log);
-      },
-      fail: (res) => {
-        console.log("setBLEMTU fail>>", res);
-        var log = textLog + "设置最大MTU失败：res=" + JSON.stringify(res) + "\n";
         setTextLog(log);
       },
     });
@@ -241,8 +217,7 @@ const Index = () => {
           </div>
           <div className='functionButtonDiv2'>
             <van-button type="warning" className="functionButtonLeft" onClick={startClear}>清空log日志</van-button>
-            <van-button type="primary" className="functionButtonMiddle" onClick={setMTUClick}>最大MTU</van-button>
-            <van-button type="danger" className="functionButtonRight" onClick={handleCloseBLEConnection}>断开连接</van-button>
+            <van-button type="danger" className="functionButtonRight" onClick={closeBLEConnection}>断开连接</van-button>
           </div>
         </div>
       </div>
