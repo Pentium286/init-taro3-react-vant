@@ -172,34 +172,28 @@ const Index = () => {
 
   // 监听寻找到新设备的事件
   const onBluetoothDeviceFound = () => {
+    let arr = devices;
     Taro.onBluetoothDeviceFound((res) => {
       res.devices.forEach((device) => {
         // 过滤无用蓝牙设备
         if (!device.name && !device.localName && device.name === "" && device.localName === "") {
           return;
         }
-
         const foundDevices = devices;
         const idx = inArray(foundDevices, 'deviceId', device.deviceId);
-        let arr = [];
-        // let obj = {};
+
         if (idx === -1) {
-          arr.splice(`${foundDevices.length}`, 0, device);
-          // obj[`devices[${foundDevices.length}]`] = device;
+          arr.push(device);
         } else {
           arr.splice(`${idx}`, 0, device);
-          // obj[`devices[${idx}]`] = device;
         }
-        console.log("devices: ", devices);
-        // console.log("obj: ", obj);
-        // console.log("onBluetoothDeviceFound: ", [...arr]);
         setDevices([...arr]);
       });
     });
   };
 
   // 连接低功耗蓝牙设备
-  const createBLEConnection = (e) => {
+  const createBLEConnection = (item) => {
     const devId = item.deviceId; // 设备 UUID
     const name = item.name; // 设备名称
     let log = textLog + "正在连接，请稍后... \n";
