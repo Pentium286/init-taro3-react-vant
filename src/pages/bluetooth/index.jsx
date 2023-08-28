@@ -4,16 +4,14 @@ import { useEffect, useState } from 'react';
 import './index.less';
 
 const Index = () => {
-  const [getData, setData] = useState({
-    textLog: "",
-    isopen: false, // 蓝牙适配器是否已打开
-    devices: [],
-    connected: false,
-    chs: [],
-    devId: "",
-    name: "",
-    canWrite: false,
-  });
+  const [textLog, setTextLog] = useState("");
+  const [isopen, setIsopen] = useState(false); // 蓝牙适配器是否已打开
+  const [devices, setDevices] = useState([]);
+  const [connected, setConnected] = useState(false);
+  const [chs, setChs] = useState([]);
+  const [devId, setDevId] = useState("");
+  const [name, setName] = useState("");
+  const [canWrite, setCanWrite] = useState(false);
 
   // 可以使用所有的 React Hooks
   useEffect(() => { });
@@ -41,10 +39,7 @@ const Index = () => {
     let log = "获取微信版本号:" + app.version + "\n" +
       "获取客户端系统:" + app.platform + "\n" +
       "系统版本:" + app.system + "\n";
-    setData({
-      ...getData,
-      textLog: log,
-    });
+    setTextLog(log);
   });
 
   const handleMax = (n1, n2) => {
@@ -66,10 +61,7 @@ const Index = () => {
   };
 
   const startClear = () => {
-    setData({
-      ...getData,
-      textLog: "",
-    });
+    setTextLog("");
   };
 
   // 流程：
@@ -80,7 +72,7 @@ const Index = () => {
   // 5、然后就可以得到所有已经连接的设备了
   const startScan = () => {
     Taro._discoveryStarted = false;
-    if (getData.isopen) {
+    if (isopen) {
       getBluetoothAdapterState();
     } else {
       openBluetoothAdapter();
@@ -91,36 +83,26 @@ const Index = () => {
   const openBluetoothAdapter = () => {
     Taro.openBluetoothAdapter({
       success: (res) => {
-        let log = getData.textLog + "打开蓝牙适配器成功！\n";
-        setData({
-          ...getData,
-          textLog: log,
-        });
+        let log = textLog + "打开蓝牙适配器成功！\n";
+        setTextLog(log);
         getBluetoothAdapterState();
       },
       fail: (res) => {
         Taro.showModal("蓝牙开关未开启");
-        let log = getData.textLog + "蓝牙开关未开启 \n";
-        setData({
-          ...getData,
-          textLog: log,
-          isopen: true,
-        });
+        let log = textLog + "蓝牙开关未开启 \n";
+        setTextLog(log);
+        setIsopen(true);
       },
 
     });
     // 监听蓝牙适配器状态变化事件
     Taro.onBluetoothAdapterStateChange((res) => {
-      console.log("onBluetoothAdapterStateChange: ", res);
       let isDvailable = res.available; // 蓝牙适配器是否可用
       if (isDvailable) {
         getBluetoothAdapterState();
       } else {
         stopBluetoothDevicesDiscovery(); // 停止搜索
-        setData({
-          ...getData,
-          devices: [],
-        });
+        setDevices([]);
         Taro.showModal("蓝牙开关未开启");
       }
     });
@@ -139,19 +121,13 @@ const Index = () => {
         let isDiscov = res.discovering; // 是否正在搜索设备
         let isDvailable = res.available; // 蓝牙适配器是否可用
         if (isDvailable) {
-          let log = getData.textLog + "本机蓝牙适配器状态：可用 \n";
-          setData({
-            ...getData,
-            textLog: log,
-          });
+          let log = textLog + "本机蓝牙适配器状态：可用 \n";
+          setTextLog(log);
           if (!isDiscov) {
             startBluetoothDevicesDiscovery();
           } else {
-            let log = getData.textLog + "已在搜索设备 \n";
-            setData({
-              ...getData,
-              textLog: log,
-            });
+            let log = textLog + "已在搜索设备 \n";
+            setTextLog(log);
           }
         }
       },
@@ -168,11 +144,8 @@ const Index = () => {
     Taro._discoveryStarted = true;
     Taro.showLoading("正在扫描...");
 
-    let log = getData.textLog + "正在扫描... \n";
-    setData({
-      ...getData,
-      textLog: log,
-    });
+    let log = textLog + "正在扫描... \n";
+    setTextLog(log);
 
     setTimeout(() => {
       Taro.hideLoading(); // 隐藏 loading
@@ -183,11 +156,8 @@ const Index = () => {
       services: [],
       allowDuplicatesKey: true, // 是否允许重复上报同一设备, 如果允许重复上报，则 onDeviceFound 方法会多次上报同一设备，但是 RSSI(信号) 值会有不同
       success: (res) => {
-        let log = getData.textLog + "扫描附近的蓝牙外围设备成功，准备监听寻找新设备：" + res + " \n";
-        setData({
-          ...getData,
-          textLog: log,
-        });
+        let log = textLog + "扫描附近的蓝牙外围设备成功，准备监听寻找新设备：" + res + " \n";
+        setTextLog(log);
         onBluetoothDeviceFound(); // 监听寻找到新设备的事件
       }
     });
@@ -195,11 +165,8 @@ const Index = () => {
 
   // 停止搜寻附近的蓝牙外围设备。若已经找到需要的蓝牙设备并不需要继续搜索时，建议调用该接口停止蓝牙搜索
   const stopBluetoothDevicesDiscovery = () => {
-    let log = getData.textLog + "停止搜索附近的蓝牙外围设备 \n";
-    setData({
-      ...getData,
-      textLog: log,
-    });
+    let log = textLog + "停止搜索附近的蓝牙外围设备 \n";
+    setTextLog(log);
     Taro.stopBluetoothDevicesDiscovery();
   };
 
@@ -207,20 +174,26 @@ const Index = () => {
   const onBluetoothDeviceFound = () => {
     Taro.onBluetoothDeviceFound((res) => {
       res.devices.forEach((device) => {
-        if (!device.name && !device.localName) {
+        // 过滤无用蓝牙设备
+        if (!device.name && !device.localName && device.name === "" && device.localName === "") {
           return;
         }
-        const foundDevices = getData.devices;
+
+        const foundDevices = devices;
         const idx = inArray(foundDevices, 'deviceId', device.deviceId);
-        let data = {};
+        let arr = [];
+        // let obj = {};
         if (idx === -1) {
-          data[`devices[${foundDevices.length}]`] = device;
+          arr.splice(`${foundDevices.length}`, 0, device);
+          // obj[`devices[${foundDevices.length}]`] = device;
         } else {
-          data[`devices[${idx}]`] = device;
+          arr.splice(`${idx}`, 0, device);
+          // obj[`devices[${idx}]`] = device;
         }
-        console.log("onBluetoothDeviceFound: ", data);
-        console.log("getData: ", getData);
-        // setData(data);
+        console.log("devices: ", devices);
+        // console.log("obj: ", obj);
+        // console.log("onBluetoothDeviceFound: ", [...arr]);
+        setDevices([...arr]);
       });
     });
   };
@@ -229,33 +202,24 @@ const Index = () => {
   const createBLEConnection = (e) => {
     const devId = item.deviceId; // 设备 UUID
     const name = item.name; // 设备名称
-    let log = getData.textLog + "正在连接，请稍后... \n";
-    setData({
-      ...getData,
-      textLog: log,
-    });
+    let log = textLog + "正在连接，请稍后... \n";
+    setTextLog(log);
     Taro.showLoading("连接中...");
     Taro.createBLEConnection({
       deviceId: devId,
       success: (res) => {
         Taro.hideLoading(); // 隐藏 loading
-        let log = getData.textLog + "配对成功，获取服务... \n";
-        setData({
-          ...getData,
-          textLog: log,
-          connected: true,
-          name,
-          devId,
-        });
+        let log = textLog + "配对成功，获取服务... \n";
+        setTextLog(log);
+        setConnected(true);
+        setName(name);
+        setDevId(devId);
         getBLEDeviceServices(devId);
       },
       fail: (res) => {
         Taro.hideLoading(); // 隐藏 loading
-        let log = getData.textLog + "连接失败，错误码：" + res.errCode + " \n";
-        setData({
-          ...getData,
-          textLog: log,
-        });
+        let log = textLog + "连接失败，错误码：" + res.errCode + " \n";
+        setTextLog(log);
         if (res.errCode === 10012) {
           Taro.showModal("连接超时，请重试！");
         } else if (res.errCode === 10013) {
@@ -272,14 +236,11 @@ const Index = () => {
   // 断开与低功耗蓝牙设备的连接
   const closeBLEConnection = () => {
     Taro.closeBLEConnection({
-      deviceId: getData.devId,
+      deviceId: devId,
     });
-    setData({
-      ...getData,
-      connected: false,
-      chs: [],
-      canWrite: false,
-    });
+    setConnected(false);
+    setChs([]);
+    setCanWrite(false);
   };
 
   // 获取蓝牙设备所有 service (服务)
@@ -290,13 +251,10 @@ const Index = () => {
         for (let i = 0; i < res.services.length; i++) {
           // 该服务是否为主服务
           if (res.services[i].isPrimary) {
-            let log = getData.textLog + "该服务是为主服务UUID：" + res.services[i].uuid + " \n";
-            setData({
-              ...getData,
-              textLog: log,
-            });
+            let log = textLog + "该服务是为主服务UUID：" + res.services[i].uuid + " \n";
+            setTextLog(log);
             Taro.navigateTo({
-              url: "/pages/bluetoothPage/index?name=" + encodeURIComponent(getData.name) + '&deviceId=' + encodeURIComponent(devId) + '&serviceId=' + encodeURIComponent(res.services[i].uuid),
+              url: "/pages/bluetoothPage/index?name=" + encodeURIComponent(name) + '&deviceId=' + encodeURIComponent(devId) + '&serviceId=' + encodeURIComponent(res.services[i].uuid),
             });
           }
         }
@@ -310,25 +268,27 @@ const Index = () => {
         <div className='log'>
           <div>展示log日志(可滑动查看)：</div>
           <ScrollView scrollY className='scrollList'>
-            <text>{getData.textLog}</text>
+            <text>{textLog}</text>
           </ScrollView>
         </div>
         <div className='scanView'>
           <van-button type="warning" onClick={startClear}>清空log日志</van-button>
           <van-button type="primary" onClick={startScan}>扫描蓝牙设备</van-button>
         </div>
-        <div className='devicesSummary'>已发现 {getData.devices.length} 个外围设备：</div>
+        <div className='devicesSummary'>已发现 {devices.length} 个外围设备：</div>
         <ScrollView className='deviceList' scrollY scrollWithAnimation>
           {
-            getData.devices.map((item, index) => (
-              <div key={index} onClick={() => createBLEConnection(item)} className='deviceItem'>
-                <div className='a'>{item.name}</div>
-                <div>信号强度: {item.RSSI}dBm ({handleMax(0, item.RSSI + 100)}%)</div>
-                <div className='c'>deviceId: {item.deviceId}</div>
-                {/* 当前蓝牙设备的广播数据段中的 ServiceUUIDs 数据段 */}
-                <div>Service数量: {handleLen(item.advertisServiceUUIDs)}</div>
-              </div>
-            ))
+            devices.map((item, index) => {
+              return (
+                <div key={index} onClick={() => createBLEConnection(item)} className='deviceItem'>
+                  <div className='a'>{item.name}</div>
+                  <div>信号强度: {item.RSSI}dBm ({handleMax(0, item.RSSI + 100)}%)</div>
+                  <div className='c'>deviceId: {item.deviceId}</div>
+                  {/* 当前蓝牙设备的广播数据段中的 ServiceUUIDs 数据段 */}
+                  <div>Service数量: {handleLen(item.advertisServiceUUIDs)}</div>
+                </div>
+              );
+            })
           }
         </ScrollView>
       </div>
