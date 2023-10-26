@@ -104,10 +104,6 @@ Page({
           deviceId,
         });
         this.getBLEDeviceServices(deviceId);
-        this.triggerEvent("finish", {
-          name: name,
-          deviceId: deviceId,
-        });
       }
     });
     this.stopBluetoothDevicesDiscovery();
@@ -188,6 +184,12 @@ Page({
           value: ab2hex(characteristic.value)
         };
       }
+      this.triggerEvent("finish", {
+        chs: {
+          uuid: characteristic.characteristicId,
+          value: ab2hex(characteristic.value),
+        }
+      });
       // data[`chs[${this.data.chs.length}]`] = {
       //   uuid: characteristic.characteristicId,
       //   value: ab2hex(characteristic.value)

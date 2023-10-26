@@ -3,8 +3,19 @@ import { useEffect, useState } from 'react';
 import './index.less';
 
 const Index = () => {
+  const [chs, setChs] = useState({});
+  const [bluetooth, setBluetooth] = useState([]);
+
   // 可以使用所有的 React Hooks
-  useEffect(() => { });
+  useEffect(() => {
+    if (Object.keys(chs).length > 0) {
+      setBluetooth(prev => [
+        ...prev,
+        chs,
+      ]);
+    }
+    console.log("bluetooth: ", bluetooth);
+  }, [chs]);
 
   // 对应 onReady
   useReady(() => { });
@@ -20,12 +31,23 @@ const Index = () => {
   usePullDownRefresh(() => { });
 
   const handleCallback = (e) => {
-    console.log("handleCallback: ", e.target);
+    // console.log("handleCallback: ", e.target.chs);
+    setChs(e.target.chs);
   };
 
   return (
     <div className='bluetoothPage'>
       <jbs-bluetooth-weapp onFinish={handleCallback} />
+      {
+        bluetooth.map((item) => {
+          return (
+            <>
+              <p>特性UUID：{item.uuid}</p>
+              <p>特性值：{item.value}</p>
+            </>
+          );
+        })
+      }
     </div>
   );
 };
