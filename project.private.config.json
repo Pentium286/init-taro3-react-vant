@@ -6,5 +6,17 @@
     "compileHotReLoad": true
   },
   "projectname": "jbs-init-taro3-react-vant",
-  "condition": {}
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "",
+          "pathName": "pages/bluetoothPageNew/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

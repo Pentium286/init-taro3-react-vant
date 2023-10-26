@@ -64,6 +64,12 @@ const Index = () => {
     });
   };
 
+  const handleBluetoothNew = () => {
+    Taro.navigateTo({
+      url: "/pages/bluetoothPageNew/index"
+    });
+  };
+
   return (
     <>
       <div class="main">
@@ -85,6 +91,9 @@ const Index = () => {
         </div>
         <div className='demo-block'>
           <van-button type="primary" block onClick={handleBluetooth}>蓝牙</van-button>
+        </div>
+        <div className='demo-block'>
+          <van-button type="primary" block onClick={handleBluetoothNew}>蓝牙新的</van-button>
         </div>
       </div>
     </>

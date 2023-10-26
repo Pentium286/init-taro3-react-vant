@@ -9,6 +9,7 @@ export default defineAppConfig({
     'pages/camera/index',
     'pages/bluetooth/index',
     'pages/bluetoothPage/index',
+    'pages/bluetoothPageNew/index',
     'pages/test/icon/index',
     'pages/test/api/index',
     'pages/test/example/index',
