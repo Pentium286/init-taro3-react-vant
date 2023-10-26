@@ -19,8 +19,14 @@ const Index = () => {
   // 详情可查阅：【Hooks】
   usePullDownRefresh(() => { });
 
+  const handleCallback = (e) => {
+    console.log("handleCallback: ", e.target);
+  };
+
   return (
-    <div className='bluetoothPage'>111</div>
+    <div className='bluetoothPage'>
+      <jbs-bluetooth-weapp onFinish={handleCallback} />
+    </div>
   );
 };
 
