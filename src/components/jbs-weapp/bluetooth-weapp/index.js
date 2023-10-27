@@ -87,7 +87,6 @@ Page({
         }
         const foundDevices = this.data.devices;
         const idx = inArray(foundDevices, 'deviceId', device.deviceId);
-        console.log(idx);
         const data = {};
         if (idx === -1) {
           data[`devices[${foundDevices.length}]`] = device;
