@@ -219,9 +219,13 @@ Page({
     dataView.setUint8(0, Math.random() * 255 | 0);
     // 向蓝牙低功耗设备特征值中写入二进制数据。注意：必须设备的特征支持 write 才可以成功调用。
     wx.writeBLECharacteristicValue({
+      // 这里的 deviceId 需要在 getBluetoothDevices 或 onBluetoothDeviceFound 接口中获取
       deviceId: this._deviceId,
-      serviceId: this._deviceId,
+      // 这里的 serviceId 需要在 getBLEDeviceServices 接口中获取
+      serviceId: this._serviceId,
+      // 这里的 characteristicId 需要在 getBLEDeviceCharacteristics 接口中获取
       characteristicId: this._characteristicId,
+      // 这里的value是ArrayBuffer类型
       value: buffer,
     });
   },
