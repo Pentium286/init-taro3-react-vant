@@ -36,7 +36,7 @@ const Index = () => {
         <div className='animation1Box'>
           <div className={`animation1 ${top ? "scale-down-ver-top" : "scale-up-ver-top"}`} onClick={handleTop}></div>
           <h2 className='title'>家用智能头皮仪</h2>
-          <div className='icon'>箭头</div>
+          <div className={`icon ${top ? "iconDown" : "iconUp"}`}>箭头</div>
           <div className='text'>已连接</div>
           <div className='img'>我是图片</div>
           <van-button className="btn" type="primary" round onClick={handleBtn}>开始护理</van-button>

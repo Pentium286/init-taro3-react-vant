@@ -28,12 +28,20 @@
         position: absolute;
         top: 24px;
         left: 8px;
+        color: #fff;
       }
 
       .icon {
         position: absolute;
-        top: 24px;
-        left: 260px;
+        color: #fff;
+
+        &.iconUp {
+          animation: icon-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
+
+        &.iconDown {
+          animation: icon-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
       }
 
       .text {
@@ -133,5 +141,30 @@
   100% {
     transform: scaleY(1);
     transform-origin: 0% 100%;
+  }
+}
+
+// 箭头动画
+@keyframes icon-up {
+  0% {
+    top: 100px;
+    left: 0px;
+  }
+
+  100% {
+    top: 24px;
+    left: 260px;
+  }
+}
+
+@keyframes icon-down {
+  0% {
+    top: 24px;
+    left: 260px;
+  }
+
+  100% {
+    top: 100px;
+    left: 0px;
   }
 }
