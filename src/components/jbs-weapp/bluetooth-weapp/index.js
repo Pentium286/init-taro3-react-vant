@@ -230,6 +230,11 @@ Page({
     });
   },
   closeBluetoothAdapter() {
+    this.setData({
+      devices: [],
+      connected: false,
+      chs: [],
+    });
     // 关闭蓝牙模块。调用该方法将断开所有已建立的连接并释放系统资源。建议在使用蓝牙流程后，与 wx.openBluetoothAdapter 成对调用。
     wx.closeBluetoothAdapter();
     this._discoveryStarted = false;
