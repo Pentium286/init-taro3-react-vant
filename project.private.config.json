@@ -11,14 +11,7 @@
       "list": [
         {
           "name": "",
-          "pathName": "pages/animation/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "pages/bluetoothPageNew/index",
+          "pathName": "pages/bluetoothSplit/index",
           "query": "",
           "launchMode": "default",
           "scene": null

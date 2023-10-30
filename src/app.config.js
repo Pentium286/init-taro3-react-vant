@@ -10,6 +10,7 @@ export default defineAppConfig({
     'pages/bluetooth/index',
     'pages/bluetoothPage/index',
     'pages/bluetoothPageNew/index',
+    'pages/bluetoothSplit/index',
     'pages/animation/index',
     'pages/test/icon/index',
     'pages/test/api/index',

@@ -70,6 +70,12 @@ const Index = () => {
     });
   };
 
+  const handleBluetoothSplit = () => {
+    Taro.navigateTo({
+      url: "/pages/bluetoothSplit/index",
+    });
+  };
+
   const handleAnimis = () => {
     Taro.navigateTo({
       url: "/pages/animation/index",
@@ -100,6 +106,9 @@ const Index = () => {
         </div>
         <div className='demo-block'>
           <van-button type="primary" block onClick={handleBluetoothNew}>蓝牙新的</van-button>
+        </div>
+        <div className='demo-block'>
+          <van-button type="primary" block onClick={handleBluetoothSplit}>蓝牙模块拆分</van-button>
         </div>
         <div className='demo-block'>
           <van-button type="primary" block onClick={handleAnimis}>动画效果</van-button>
