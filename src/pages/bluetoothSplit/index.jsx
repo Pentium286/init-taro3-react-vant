@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import './index.less';
 
 const Index = () => {
-  const [blueDeviceList, setBlueDeviceList] = useState([]);
+  const [blueDeviceList, setBlueDeviceList] = useState([]); // 搜索到的蓝牙设备列表
+  const [deviceId, setDeviceId] = useState(""); // 蓝牙设备id
 
   // 初始化蓝牙
   const openBluetoothAdapter = () => {
@@ -34,10 +35,44 @@ const Index = () => {
     });
   };
 
+  // 找到新设备就出发该方法
   const found = (res) => {
     // 实现 useState 数组 push
     setBlueDeviceList(prevArray => {
       return [...prevArray, res.devices[0]];
+    });
+  };
+
+  // 连接设备
+  const createBLEConnection = (data) => {
+    console.log("createBLEConnection: ", data);
+    setDeviceId(data.deviceId);
+
+    Taro.createBLEConnection({
+      deviceId: data.deviceId,
+      success(res) {
+        console.log("连接成功");
+        console.log(res);
+        // 停止搜索
+      },
+      fail(err) {
+        console.log("连接失败");
+        console.log(err);
+      },
+    });
+    stopBluetoothDevicesDiscovery();
+  };
+
+  const stopBluetoothDevicesDiscovery = () => {
+    Taro.stopBluetoothDevicesDiscovery({
+      success(res) {
+        console.log("停止成功");
+        console.log(res);
+      },
+      fail(err) {
+        console.log("停止失败");
+        console.log(err);
+      },
     });
   };
 
@@ -50,7 +85,9 @@ const Index = () => {
         {
           blueDeviceList.map((item) => {
             return (
-              <>{item.deviceId} - {item.name}</>
+              <p className='text' onClick={() => createBLEConnection(item)}>
+                {item.deviceId} - {item.name}
+              </p>
             );
           })
         }
