@@ -65,7 +65,7 @@ Page({
     }
     this._discoveryStarted = true;
     // 开始搜寻附近的蓝牙外围设备。
-    // 此操作比较耗费系统资源，请在搜索到需要的设备后及时调用 wx.stopBluetoothDevicesDiscovery 停止搜索。
+    // 此操作比较耗费系统资源，请在搜索到需要的设备后及时调用 stopBluetoothDevicesDiscovery 停止搜索。
     wx.startBluetoothDevicesDiscovery({
       allowDuplicatesKey: true,
       success: (res) => {
@@ -169,7 +169,7 @@ Page({
           }
           if (item.properties.notify || item.properties.indicate) {
             // 启用蓝牙低功耗设备特征值变化时的 notify 功能，订阅特征。注意：必须设备的特征支持 notify 或者 indicate 才可以成功调用。
-            // 另外，必须先启用 wx.notifyBLECharacteristicValueChange 才能监听到设备 characteristicValueChange 事件
+            // 另外，必须先启用 notifyBLECharacteristicValueChange 才能监听到设备 characteristicValueChange 事件
             wx.notifyBLECharacteristicValueChange({
               deviceId,
               serviceId,
@@ -234,7 +234,7 @@ Page({
       connected: false,
       chs: [],
     });
-    // 关闭蓝牙模块。调用该方法将断开所有已建立的连接并释放系统资源。建议在使用蓝牙流程后，与 wx.openBluetoothAdapter 成对调用。
+    // 关闭蓝牙模块。调用该方法将断开所有已建立的连接并释放系统资源。建议在使用蓝牙流程后，与 openBluetoothAdapter 成对调用。
     wx.closeBluetoothAdapter();
     this._discoveryStarted = false;
   },
