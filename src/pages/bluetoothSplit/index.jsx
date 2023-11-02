@@ -178,9 +178,6 @@ const Index = () => {
 
   return (
     <div className='bluetoothPageSplit'>
-      <div className='demo-block'>
-        <van-button type="primary" block onClick={openBluetoothAdapter}>初始化蓝牙</van-button>
-      </div>
       <scroll-view className="scrollview" scrollY>
         {
           blueDeviceList.map((item) => {
@@ -192,6 +189,9 @@ const Index = () => {
           })
         }
       </scroll-view>
+      <div className='demo-block'>
+        <van-button type="primary" block onClick={openBluetoothAdapter}>初始化蓝牙</van-button>
+      </div>
       <div className='demo-block'>
         <van-button type="primary" block onClick={startBluetoothDevicesDiscovery}>搜索附近蓝牙设备</van-button>
       </div>
