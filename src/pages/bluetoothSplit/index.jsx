@@ -214,7 +214,7 @@ const Index = () => {
   // 【10】发送数据
   const writeBLECharacteristicValue = () => {
     // 向蓝牙设备发送一个 0x00 的16进制数据
-    let msg = "hello";
+    let msg = "hello world";
 
     const buffer = new ArrayBuffer(msg.length);
     const dataView = new DataView(buffer);
