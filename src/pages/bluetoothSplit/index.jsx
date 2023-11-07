@@ -40,6 +40,7 @@ const Index = () => {
 
   // 【3】找到新设备就出发该方法
   const found = (res) => {
+    console.log("found: ", res);
     // 实现 useState 数组 push
     setBlueDeviceList(prevArray => {
       return [...prevArray, res.devices[0]];
