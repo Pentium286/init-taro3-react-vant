@@ -82,6 +82,12 @@ const Index = () => {
     });
   };
 
+  const eventStream = () => {
+    Taro.navigateTo({
+      url: "/pages/eventStream/index",
+    });
+  };
+
   return (
     <>
       <div class="main">
@@ -112,6 +118,9 @@ const Index = () => {
         </div>
         <div className='demo-block'>
           <van-button type="primary" block onClick={handleAnimis}>动画效果</van-button>
+        </div>
+        <div className='demo-block'>
+          <van-button type="primary" block onClick={eventStream}>text/event-stream</van-button>
         </div>
       </div>
     </>

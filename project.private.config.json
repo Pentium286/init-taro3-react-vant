@@ -10,15 +10,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "",
-          "pathName": "pages/bluetoothPageNew/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "pages/bluetoothSplit/index",
+          "name": "pages/eventStream/index",
+          "pathName": "pages/eventStream/index",
           "query": "",
           "launchMode": "default",
           "scene": null

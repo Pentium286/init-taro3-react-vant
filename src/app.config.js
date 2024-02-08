@@ -15,6 +15,7 @@ export default defineAppConfig({
     'pages/test/icon/index',
     'pages/test/api/index',
     'pages/test/example/index',
+    'pages/eventStream/index',
   ],
   tabBar: {
     custom: true,
