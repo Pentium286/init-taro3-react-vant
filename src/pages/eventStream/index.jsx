@@ -70,7 +70,6 @@ const Index = () => {
       // console.log(requestData);
       // that.res += requestData;
     });
-
   };
 
   return (
