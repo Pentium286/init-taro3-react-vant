@@ -1,3 +1,5 @@
+### 说明
+
 `src/app.config.js` 添加组件
 
 pages:主包页面组件
@@ -11,3 +13,6 @@ utils:公共文件js
 style:公共style
 
 packageA:分包A
+
+### 文档
+> https://docs.taro.zone/docs/vant
