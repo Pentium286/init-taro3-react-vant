@@ -88,6 +88,12 @@ const Index = () => {
     });
   };
 
+  const handleChart = () => {
+    Taro.navigateTo({
+      url: "/pages/chart/index",
+    });
+  };
+
   return (
     <>
       <div class="main">
@@ -121,6 +127,9 @@ const Index = () => {
         </div>
         <div className='demo-block'>
           <van-button type="primary" block onClick={eventStream}>text/event-stream</van-button>
+        </div>
+        <div className='demo-block'>
+          <van-button type="primary" block onClick={handleChart}>图表</van-button>
         </div>
       </div>
     </>

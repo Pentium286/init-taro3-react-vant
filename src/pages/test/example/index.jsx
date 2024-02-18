@@ -114,21 +114,23 @@ const Index = () => {
           <van-col span="8">span: 8</van-col>
           <van-col span="8">span: 8</van-col>
         </van-row>
-        <van-tabs active={active} onChange={onChange}>
-          <van-tab title="标签 1">
-            <van-cell-group>
-              <van-field
-                value={value}
-                placeholder="请输入用户名"
-                border={false}
-                onChange={handleChange}
-              />
-            </van-cell-group>
-          </van-tab>
-          <van-tab title="标签 2">内容 2</van-tab>
-          <van-tab title="标签 3">内容 3</van-tab>
-          <van-tab title="标签 4">内容 4</van-tab>
-        </van-tabs>
+        <div className='tabs'>
+          <van-tabs active={active} onChange={onChange}>
+            <van-tab title="标签 1">
+              <van-cell-group>
+                <van-field
+                  value={value}
+                  placeholder="请输入用户名"
+                  border={false}
+                  onChange={handleChange}
+                />
+              </van-cell-group>
+            </van-tab>
+            <van-tab title="标签 2">内容 2</van-tab>
+            <van-tab title="标签 3">内容 3</van-tab>
+            <van-tab title="标签 4">内容 4</van-tab>
+          </van-tabs>
+        </div>
         <div className='demo_block'>
           <van-datetime-picker
             type="date"

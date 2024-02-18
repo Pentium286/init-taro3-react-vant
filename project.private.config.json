@@ -6,17 +6,5 @@
     "compileHotReLoad": true
   },
   "projectname": "jbs-init-taro3-react-vant",
-  "condition": {
-    "miniprogram": {
-      "list": [
-        {
-          "name": "pages/test/example/index",
-          "pathName": "pages/test/example/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        }
-      ]
-    }
-  }
+  "condition": {}
 }

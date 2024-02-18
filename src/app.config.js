@@ -16,6 +16,7 @@ export default defineAppConfig({
     'pages/test/api/index',
     'pages/test/example/index',
     'pages/eventStream/index',
+    'pages/chart/index',
   ],
   tabBar: {
     custom: true,
