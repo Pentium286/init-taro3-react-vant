@@ -29,7 +29,7 @@ const Index = () => {
     };
 
     let readedStr = '';
-    const requestTask = wx.request({
+    const requestTask = Taro.request({
       url: 'https://ml-test.aiwobeauty.com/api/aiwo-product-manual/chatGPTQA/huatuo_stream',
       responseType: "arraybuffer",
       method: 'POST',
