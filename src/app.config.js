@@ -94,6 +94,9 @@ export default defineAppConfig({
     "van-tabbar": "@vant/tabbar/index",
     "van-tabbar-item": "@vant/tabbar-item/index",
     "van-datetime-picker": "@vant/datetime-picker/index",
+    "van-field": "@vant/field/index",
+    "van-cell": "@vant/cell/index",
+    "van-cell-group": "@vant/cell-group/index",
   },
   lazyCodeLoading: "requiredComponents",
 });

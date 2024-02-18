@@ -14,6 +14,8 @@ const Index = () => {
   const minDate = new Date(2015, 10, 1).getTime();
   const maxDate = new Date(2019, 10, 1).getTime();
 
+  const [value, setValue] = useState("");
+
   // 可以使用所有的 React Hooks
   useEffect(() => {
     initValidate();
@@ -86,6 +88,10 @@ const Index = () => {
     console.log(event.detail);
   };
 
+  const handleChange = (event) => {
+    console.log(event.detail);
+  };
+
   return (
     <>
       <div class="example">
@@ -109,7 +115,16 @@ const Index = () => {
           <van-col span="8">span: 8</van-col>
         </van-row>
         <van-tabs active={active} onChange={onChange}>
-          <van-tab title="标签 1">内容 1</van-tab>
+          <van-tab title="标签 1">
+            <van-cell-group>
+              <van-field
+                value={value}
+                placeholder="请输入用户名"
+                border={false}
+                onChange={handleChange}
+              />
+            </van-cell-group>
+          </van-tab>
           <van-tab title="标签 2">内容 2</van-tab>
           <van-tab title="标签 3">内容 3</van-tab>
           <van-tab title="标签 4">内容 4</van-tab>
