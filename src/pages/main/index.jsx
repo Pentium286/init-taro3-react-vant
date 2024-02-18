@@ -94,42 +94,53 @@ const Index = () => {
     });
   };
 
+  const handleNavigationBar = () => {
+    Taro.navigateTo({
+      url: "/pages/navigationBar/index",
+    });
+  };
+
   return (
     <>
       <div class="main">
         <h1>首页</h1>
-        <div className='demo-block'>
-          <van-button type="primary" block onClick={linkToIcon}>icon的使用</van-button>
-        </div>
-        <div className='demo-block'>
-          <van-button type="primary" block onClick={linkToApi}>接口使用说明</van-button>
-        </div>
-        <div className='demo-block'>
-          <van-button type="primary" block onClick={handleCart}>购物车页面</van-button>
-        </div>
-        <div className='demo-block'>
-          <van-button type="primary" block onClick={handleExample}>例子</van-button>
-        </div>
-        <div className='demo-block'>
-          <van-button type="primary" block onClick={handleCamera}>相机</van-button>
-        </div>
-        <div className='demo-block'>
-          <van-button type="primary" block onClick={handleBluetooth}>蓝牙</van-button>
-        </div>
-        <div className='demo-block'>
-          <van-button type="primary" block onClick={handleBluetoothNew}>蓝牙新的</van-button>
-        </div>
-        <div className='demo-block'>
-          <van-button type="primary" block onClick={handleBluetoothSplit}>蓝牙模块拆分</van-button>
-        </div>
-        <div className='demo-block'>
-          <van-button type="primary" block onClick={handleAnimis}>动画效果</van-button>
-        </div>
-        <div className='demo-block'>
-          <van-button type="primary" block onClick={eventStream}>text/event-stream</van-button>
-        </div>
-        <div className='demo-block'>
-          <van-button type="primary" block onClick={handleChart}>图表</van-button>
+        <div className='scroll'>
+          <div className='demo-block'>
+            <van-button type="primary" block onClick={linkToIcon}>icon的使用</van-button>
+          </div>
+          <div className='demo-block'>
+            <van-button type="primary" block onClick={linkToApi}>接口使用说明</van-button>
+          </div>
+          <div className='demo-block'>
+            <van-button type="primary" block onClick={handleCart}>购物车页面</van-button>
+          </div>
+          <div className='demo-block'>
+            <van-button type="primary" block onClick={handleExample}>例子</van-button>
+          </div>
+          <div className='demo-block'>
+            <van-button type="primary" block onClick={handleCamera}>相机</van-button>
+          </div>
+          <div className='demo-block'>
+            <van-button type="primary" block onClick={handleBluetooth}>蓝牙</van-button>
+          </div>
+          <div className='demo-block'>
+            <van-button type="primary" block onClick={handleBluetoothNew}>蓝牙新的</van-button>
+          </div>
+          <div className='demo-block'>
+            <van-button type="primary" block onClick={handleBluetoothSplit}>蓝牙模块拆分</van-button>
+          </div>
+          <div className='demo-block'>
+            <van-button type="primary" block onClick={handleAnimis}>动画效果</van-button>
+          </div>
+          <div className='demo-block'>
+            <van-button type="primary" block onClick={eventStream}>text/event-stream</van-button>
+          </div>
+          <div className='demo-block'>
+            <van-button type="primary" block onClick={handleChart}>图表</van-button>
+          </div>
+          <div className='demo-block'>
+            <van-button type="primary" block onClick={handleNavigationBar}>自定义 navigationBar</van-button>
+          </div>
         </div>
       </div>
     </>

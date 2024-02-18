@@ -17,6 +17,7 @@ export default defineAppConfig({
     'pages/test/example/index',
     'pages/eventStream/index',
     'pages/chart/index',
+    'pages/navigationBar/index',
   ],
   tabBar: {
     custom: true,
@@ -98,6 +99,8 @@ export default defineAppConfig({
     "van-field": "@vant/field/index",
     "van-cell": "@vant/cell/index",
     "van-cell-group": "@vant/cell-group/index",
+    "van-nav-bar": "@vant/nav-bar/index",
+
   },
   lazyCodeLoading: "requiredComponents",
 });
