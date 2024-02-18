@@ -1,5 +1,6 @@
 import Taro, { useDidHide, useDidShow, usePullDownRefresh, useReady } from '@tarojs/taro';
 import { useEffect, useState } from 'react';
+import "fastestsmallesttextencoderdecoder-encodeinto"; // 兼容小程序打包以后不支持 TextDecoder
 import './index.less';
 
 const Index = () => {
