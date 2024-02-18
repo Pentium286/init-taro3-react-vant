@@ -1,4 +1,4 @@
-import request from '@u/request';
+import request from '@/api/api';
 
 const api = {
   // 测试接口

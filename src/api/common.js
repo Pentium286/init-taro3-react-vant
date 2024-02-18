@@ -1,7 +1,7 @@
 // 通用
 import Taro from '@tarojs/taro';
-import { showToast } from '@u/message';
-import request from '@u/request';
+import { showToast } from '@u/index.js';
+import request from './api.js';
 import { Base64 } from 'js-base64';
 import crypto from 'crypto-js';
 

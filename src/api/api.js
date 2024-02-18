@@ -1,8 +1,8 @@
-import getRequestUrl from "./getRequestUrl.js";
-import { showToast } from './message.js';
 import Taro from '@tarojs/taro';
-function request(options) {
-  let { url, method = "POST", data, header, cookies = true, isLoading = false, isShowError = true, ...otherData } = options;
+import { showToast } from '@u/index.js';
+let base = process.env.BASE_URL;
+export default function request(options) {
+  let { url, method = "POST", data, header, cookies = true, isLoading = true, isShowError = true, ...otherData } = options;
   if (isLoading) {
     Taro.showLoading({
       title: '加载中',
@@ -17,7 +17,7 @@ function request(options) {
   return new Promise((resolve, reject) => {
     let router = Taro.getCurrentInstance().router;
     return Taro.request({
-      url: `${getRequestUrl()}${url}`,
+      url: `${base}${url}`,
       method,
       data,
       header: headers,
@@ -27,9 +27,14 @@ function request(options) {
           Taro.setStorageSync('cookies', cookiesAll[0]);
         }
         if (res.statusCode == 200) {
-          // console.log('api-sucess', res.data);
+          console.log('api-sucess', res);
           if (res.data.success) {
-            resolve(res.data.data);
+            if (options?.resultFlag == 'all') {
+              resolve(res);
+            } else {
+              resolve(res.data.data);
+            }
+
           } else {
             if (isShowError) {
               showToast(res.data.message);
@@ -40,9 +45,9 @@ function request(options) {
           switch (res.statusCode) {
             case 401:
               showToast('用户未登录');
-              if (router.path != '/pages/login.index') {
+              if (router.path != '/pages/login/index') {
                 Taro.navigateTo({
-                  url: '/packageA/pages/login/index'
+                  url: '/pages/login/index'
                 });
               }
               Taro.clearStorageSync();
@@ -65,7 +70,6 @@ function request(options) {
         }
       },
       fail: (err) => {
-        // console.log('api-fail', err);
         if (isShowError) {
           showToast(err.errMsg);
         }
@@ -78,5 +82,5 @@ function request(options) {
       }
     });
   });
+
 }
-export default request;
