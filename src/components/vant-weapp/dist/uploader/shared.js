@@ -31,6 +31,10 @@ export const videoProps = {
         type: String,
         value: 'back',
     },
+    referrerPolicy: {
+        type: String,
+        value: 'no-referrer',
+    },
 };
 // props for media
 export const mediaProps = {
