@@ -37,7 +37,7 @@ const Index = () => {
 
   return (
     <div className='bluetoothPage'>
-      <jbs-bluetooth-weapp onFinish={handleCallback} />
+      <bluetooth-weapp onFinish={handleCallback} />
       {
         bluetooth.map((item) => {
           return (

@@ -39,7 +39,7 @@ const Index = () => {
     <>
       <div className='index'>
         <h1>红包雨</h1>
-        <jbs-red-packet-rain
+        <red-packet-rain
           visible={visible}
           createSpeed={createSpeed}
           time={time}
