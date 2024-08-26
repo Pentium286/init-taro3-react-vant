@@ -1,3 +1,4 @@
+
 import Taro, { useLaunch, useDidHide, useDidShow } from '@tarojs/taro';
 import { useEffect } from 'react';
 import { updateVersion } from './api/common.js';
@@ -18,7 +19,9 @@ function App({ children }) {
   // 对应 onHide
   useDidHide(() => { });
 
-  useLaunch(() => { });
+  useLaunch(() => {
+    console.log('App launched.');
+  });
 
   // children 是将要会渲染的页面
   return children;

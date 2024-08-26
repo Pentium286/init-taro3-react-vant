@@ -1,9 +1,13 @@
-module.exports = {
+export default {
   env: {
     NODE_ENV: '"development"',
     BASE_URL: '"https://test1.aiwobeauty.com/api"',
   },
-  defineConstants: {},
+  // 不显示日志
+  // logger: {
+  //   quiet: false,
+  //   stats: true
+  // },
   mini: {},
   h5: {}
 };

@@ -100,7 +100,6 @@ export default defineAppConfig({
     "van-cell": "@vant/cell/index",
     "van-cell-group": "@vant/cell-group/index",
     "van-nav-bar": "@vant/nav-bar/index",
-
   },
   lazyCodeLoading: "requiredComponents",
 });
